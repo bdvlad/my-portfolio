@@ -5,10 +5,9 @@
 ## Технології
 
 - HTML5
-- CSS3 (flex, grid, медіазапити)
+- CSS3 (flex, grid, медіазапити, CSS-змінні для тем)
+- JavaScript (перемикач світлої/темної теми)
 - Google Fonts: Cormorant Garamond, Source Sans 3
-
-Збірка, фреймворки та JavaScript не використовуються.
 
 ## Структура
 
@@ -17,6 +16,8 @@ my-portfolio/
 ├── index.html
 ├── css/
 │   └── styles.css
+├── js/
+│   └── theme.js
 └── README.md
 ```
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="uk" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -15,6 +15,21 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/styles.css" />
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem("theme");
+          var theme =
+            saved ||
+            (window.matchMedia("(prefers-color-scheme: dark)").matches
+              ? "dark"
+              : "light");
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (e) {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      })();
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main">До змісту</a>
@@ -22,14 +37,26 @@
     <header class="site-header">
       <div class="container header-inner">
         <a class="logo" href="#hero">ВН</a>
-        <nav class="nav" aria-label="Основна навігація">
-          <a href="#about">Про мене</a>
-          <a href="#skills">Навички</a>
-          <a href="#competencies">Компетенції</a>
-          <a href="#services">Послуги</a>
-          <a href="#reviews">Відгуки</a>
-          <a href="#contact">Контакт</a>
-        </nav>
+        <div class="header-tools">
+          <nav class="nav" aria-label="Основна навігація">
+            <a href="#about">Про мене</a>
+            <a href="#skills">Навички</a>
+            <a href="#competencies">Компетенції</a>
+            <a href="#services">Послуги</a>
+            <a href="#reviews">Відгуки</a>
+            <a href="#contact">Контакт</a>
+          </nav>
+          <button
+            class="theme-toggle"
+            id="theme-toggle"
+            type="button"
+            aria-pressed="false"
+            aria-label="Перемкнути тему"
+          >
+            <span data-for="light">Світла</span>
+            <span data-for="dark">Темна</span>
+          </button>
+        </div>
       </div>
     </header>
 
@@ -387,5 +414,6 @@
         <p class="footer-note">Зроблено руками, CSS і легким почуттям гумору.</p>
       </div>
     </footer>
+    <script src="js/theme.js"></script>
   </body>
 </html>

@@ -1,18 +1,37 @@
 :root {
   --navy: #14213d;
   --navy-deep: #0d172b;
+  --heading: #14213d;
   --ink: #1c2434;
   --muted: #5c6574;
   --paper: #f6f3ec;
   --paper-2: #efe9dc;
   --white: #fcfbf8;
+  --on-brand: #f6f3ec;
   --gold: #b0893c;
   --gold-dark: #8c6a28;
   --line: rgba(20, 33, 61, 0.12);
   --shadow: 0 18px 40px rgba(13, 23, 43, 0.12);
+  --header-bg: rgba(246, 243, 236, 0.92);
   --radius: 14px;
   --max: 1120px;
   --header: 72px;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --heading: #e8eef8;
+  --ink: #dce3ee;
+  --muted: #9aa6b8;
+  --paper: #10151c;
+  --paper-2: #171e28;
+  --white: #1c2430;
+  --on-brand: #e8eef8;
+  --gold: #d4b36a;
+  --gold-dark: #e0c27a;
+  --line: rgba(232, 238, 248, 0.12);
+  --shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+  --header-bg: rgba(16, 21, 28, 0.92);
 }
 
 *,
@@ -23,6 +42,7 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
 }
 
 body {
@@ -31,6 +51,7 @@ body {
   color: var(--ink);
   background: var(--paper);
   line-height: 1.6;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 img {
@@ -38,7 +59,7 @@ img {
 }
 
 a {
-  color: var(--navy);
+  color: var(--heading);
   text-decoration-thickness: 1px;
   text-underline-offset: 3px;
 }
@@ -52,7 +73,7 @@ h2,
 h3 {
   font-family: "Cormorant Garamond", Georgia, serif;
   line-height: 1.15;
-  color: var(--navy);
+  color: var(--heading);
   margin: 0 0 0.45em;
 }
 
@@ -86,7 +107,7 @@ code {
   left: 1rem;
   top: -40px;
   background: var(--navy);
-  color: var(--white);
+  color: var(--on-brand);
   padding: 0.5rem 0.8rem;
   z-index: 100;
 }
@@ -113,7 +134,7 @@ code {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(246, 243, 236, 0.92);
+  background: var(--header-bg);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
 }
@@ -136,8 +157,8 @@ section[id] {
   flex-shrink: 0;
   display: grid;
   place-items: center;
-  border: 1.5px solid var(--navy);
-  color: var(--navy);
+  border: 1.5px solid var(--heading);
+  color: var(--heading);
   font-family: "Cormorant Garamond", Georgia, serif;
   font-weight: 700;
   text-decoration: none;
@@ -155,12 +176,52 @@ section[id] {
   text-decoration: none;
   font-size: 0.95rem;
   font-weight: 600;
-  color: var(--navy);
+  color: var(--heading);
 }
 
 .nav a:hover,
 .nav a:focus-visible {
   color: var(--gold-dark);
+}
+
+.header-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.7rem 1rem;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem;
+  border: 1.5px solid var(--heading);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--heading);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus-visible {
+  border-color: var(--gold-dark);
+}
+
+.theme-toggle span {
+  padding: 0.38rem 0.7rem;
+  border-radius: 999px;
+}
+
+html:not([data-theme="dark"]) .theme-toggle [data-for="light"],
+html[data-theme="dark"] .theme-toggle [data-for="dark"] {
+  background: var(--navy);
+  color: var(--on-brand);
 }
 
 .hero {
@@ -204,23 +265,23 @@ section[id] {
 
 .btn-primary {
   background: var(--navy);
-  color: var(--white);
+  color: var(--on-brand);
 }
 
 .btn-primary:hover {
   background: var(--navy-deep);
-  color: var(--white);
+  color: var(--on-brand);
 }
 
 .btn-ghost {
-  border-color: var(--navy);
-  color: var(--navy);
+  border-color: var(--heading);
+  color: var(--heading);
   background: transparent;
 }
 
 .btn-ghost:hover {
   background: var(--navy);
-  color: var(--white);
+  color: var(--on-brand);
 }
 
 .hero-meta {
@@ -242,12 +303,12 @@ section[id] {
 .hero-meta dd {
   margin: 0.2rem 0 0;
   font-weight: 600;
-  color: var(--navy);
+  color: var(--heading);
 }
 
 .card-portrait {
   background: var(--navy);
-  color: var(--paper);
+  color: var(--on-brand);
   padding: 1.4rem;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -316,12 +377,12 @@ section[id] {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: 1.25rem;
   font-style: italic;
-  color: var(--paper);
+  color: var(--on-brand);
 }
 
 .portrait-note {
   margin: 0;
-  color: rgba(246, 243, 236, 0.65);
+  color: color-mix(in srgb, var(--on-brand) 65%, transparent);
   font-size: 0.88rem;
 }
 
@@ -456,7 +517,7 @@ td {
 
 th {
   background: var(--navy);
-  color: var(--paper);
+  color: var(--on-brand);
   font-weight: 600;
   letter-spacing: 0.04em;
 }
@@ -499,7 +560,7 @@ tbody tr:hover td {
 .contact-card {
   font-style: normal;
   background: var(--navy);
-  color: var(--paper);
+  color: var(--on-brand);
   padding: 1.4rem 1.3rem;
   display: grid;
   gap: 1rem;
@@ -519,7 +580,7 @@ tbody tr:hover td {
 }
 
 .contact-card a {
-  color: var(--paper);
+  color: var(--on-brand);
 }
 
 .contact-card a:hover {
@@ -528,7 +589,7 @@ tbody tr:hover td {
 
 .site-footer {
   background: var(--navy-deep);
-  color: rgba(246, 243, 236, 0.78);
+  color: color-mix(in srgb, var(--on-brand) 78%, transparent);
   padding: 1.4rem 0 1.6rem;
   font-size: 0.92rem;
 }
@@ -591,5 +652,9 @@ tbody tr:hover td {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  body {
+    transition: none;
   }
 }
