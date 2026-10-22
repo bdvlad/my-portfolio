@@ -382,6 +382,58 @@ section[id] {
   margin-bottom: 0;
 }
 
+.skill-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.skill {
+  background: var(--white);
+  border: 1px solid var(--line);
+  padding: 1.1rem 1.15rem 1.2rem;
+}
+
+.skill-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.skill h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.skill-top span {
+  font-weight: 700;
+  color: var(--gold-dark);
+  font-variant-numeric: tabular-nums;
+}
+
+.skill p {
+  margin: 0.35rem 0 0.85rem;
+  color: var(--muted);
+  font-size: 0.97rem;
+}
+
+.skill-track {
+  height: 8px;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.skill-fill {
+  display: block;
+  height: 100%;
+  width: var(--level);
+  background: linear-gradient(90deg, var(--navy), var(--gold));
+}
+
 .table-wrap {
   overflow-x: auto;
   background: var(--white);
@@ -505,7 +557,8 @@ tbody tr:hover td {
   }
 
   .cards,
-  .reviews {
+  .reviews,
+  .skill-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
